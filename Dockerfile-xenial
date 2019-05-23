@@ -9,5 +9,13 @@ RUN set -ex \
                devscripts \
                equivs \
                fakeroot \
+               sudo \
     && apt-get clean \
-    && rm -rf /tmp/* /var/tmp/*
+    && rm -rf /tmp/* /var/tmp/* \
+    useradd builder -u 1000 -m -G users,wheel && \
+    echo "builder ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER builder
+WORKDIR "/home/builder"
+ENV FLAVOR=debbuild OS=ubuntu DIST=16.04
+CMD /bin/bash
