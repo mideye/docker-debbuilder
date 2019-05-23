@@ -8,7 +8,8 @@ RUN set -ex && \
                devscripts \
                equivs \
                fakeroot \
-               sudo && \
+               sudo \
+               curl && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* 
 RUN useradd builder -u 1000 -m -G users,sudo && \
