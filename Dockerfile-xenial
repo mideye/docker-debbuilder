@@ -1,5 +1,4 @@
 FROM ubuntu:16.04
-
 RUN set -ex && \
     sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list && \
     apt-get update && \
@@ -11,8 +10,8 @@ RUN set -ex && \
                fakeroot \
                sudo && \
     apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* && \
-    useradd builder -u 1000 -m -G users,wheel && \
+    rm -rf /tmp/* /var/tmp/* 
+RUN useradd builder -u 1000 -m -G users,sudo && \
     echo "builder ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER builder
