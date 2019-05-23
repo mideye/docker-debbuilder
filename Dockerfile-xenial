@@ -1,17 +1,17 @@
 FROM ubuntu:16.04
 
-RUN set -ex \
-    && sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN set -ex && \
+    sed -i -- 's/# deb-src/deb-src/g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
                build-essential \
                cdbs \
                devscripts \
                equivs \
                fakeroot \
-               sudo \
-    && apt-get clean \
-    && rm -rf /tmp/* /var/tmp/* \
+               sudo && \
+    apt-get clean && \
+    rm -rf /tmp/* /var/tmp/* && \
     useradd builder -u 1000 -m -G users,wheel && \
     echo "builder ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
