@@ -10,6 +10,7 @@ RUN set -ex && \
                fakeroot \
                sudo \
                curl \
+               wget \
                jq && \
     apt-get clean && \
     rm -rf /tmp/* /var/tmp/* 
